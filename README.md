@@ -16,7 +16,7 @@ A beautiful, calming Progressive Web Application (PWA) designed for mindfulness 
 
 ## 🚀 Live Demo
 
-Visit the live app: [Your App URL Here]
+Visit the live app: **[https://cman10.github.io/GlassClock](https://cman10.github.io/GlassClock)**
 
 ## 🛠️ Technology Stack
 
