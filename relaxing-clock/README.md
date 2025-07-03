@@ -1,4 +1,4 @@
-# Relaxing Clock PWA
+# Glass Clock PWA
 
 A calming, customizable Progressive Web Application (PWA) designed for mindfulness and relaxation. Built with React, TypeScript, and modern web technologies.
 
@@ -189,4 +189,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Enjoy your peaceful time with Relaxing Clock! 🕐✨**
+**Enjoy your peaceful time with Glass Clock! 🕐✨**

@@ -1,4 +1,4 @@
-# Relaxing Clock PWA 🕐✨
+# Glass Clock PWA 🕐✨
 
 A beautiful, calming Progressive Web Application (PWA) designed for mindfulness and relaxation. Built with React, TypeScript, and modern web technologies.
 
@@ -36,11 +36,11 @@ Visit the live app: [Your App URL Here]
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/relaxing-clock-pwa.git
-cd relaxing-clock-pwa
+git clone https://github.com/yourusername/glass-clock-pwa.git
+cd glass-clock-pwa
 
 # Install dependencies
-cd relaxing-clock
+cd glass-clock
 npm install
 
 # Start development server
@@ -71,7 +71,7 @@ npm run build
 ## 🔧 Project Structure
 
 ```
-relaxing-clock/
+glass-clock/
 ├── src/
 │   ├── components/          # React components
 │   │   ├── Clock.tsx       # Main clock display
@@ -106,4 +106,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Enjoy your peaceful time with Relaxing Clock! 🕐✨** 
+**Enjoy your peaceful time with Glass Clock! 🕐✨** 
