@@ -2,6 +2,7 @@
   "name": "glass-clock",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cman10.github.io/GlassClock",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
