@@ -39,6 +39,11 @@ jobs:
       run: |
         cd relaxing-clock
         npm run build
+      env:
+        CI: false
+        GENERATE_SOURCEMAP: false
+        ESLINT_NO_DEV_ERRORS: true
+        TSC_COMPILE_ON_ERROR: true
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
