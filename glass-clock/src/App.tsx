@@ -741,7 +741,7 @@ const AppContent: React.FC = () => {
       <LoadingScreen theme={state.currentTheme}>
         <LoadingSpinner theme={state.currentTheme} />
         <LoadingText theme={state.currentTheme}>
-          Loading Relaxing Clock...
+          Loading Glass Clock...
         </LoadingText>
       </LoadingScreen>
     );
