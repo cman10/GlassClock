@@ -833,14 +833,14 @@ const AppContent: React.FC = () => {
         )}
 
         {/* Premium Badge */}
-        {!isPremiumUser && (
+        {/* {!isPremiumUser && (
           <PremiumBadge 
             theme={state.currentTheme}
             onClick={() => dispatch({ type: 'SET_CURRENT_VIEW', payload: 'premium' })}
           >
             ⭐ Upgrade to Premium
           </PremiumBadge>
-        )}
+        )} */}
 
         {/* Focus Assistant Overlay */}
         {state.currentFocusSession && state.currentView === 'main' && (

@@ -126,78 +126,98 @@ const GlassTimeContainer = styled(motion.div)<{ theme: any; isLowTransparency?: 
   z-index: 10;
   transform-style: preserve-3d;
   
-  /* 1. Translucent, frosted surfaces */
+  /* Enhanced multi-layer glass with greater depth */
   background: ${props => props.isLowTransparency ? 
     `linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.25) 50%,
-      rgba(255, 255, 255, 0.35) 100%
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.25) 25%,
+      rgba(255, 255, 255, 0.35) 75%,
+      rgba(255, 255, 255, 0.4) 100%
     )` :
     `linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.08) 30%,
-      rgba(255, 255, 255, 0.12) 70%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.08) 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(255, 255, 255, 0.12) 60%,
+      rgba(255, 255, 255, 0.18) 80%,
       rgba(255, 255, 255, 0.15) 100%
     )`
   };
   
   backdrop-filter: ${props => props.isLowTransparency ? 
-    'blur(20px) saturate(110%)' : 
-    'blur(35px) saturate(130%)'
+    'blur(25px) saturate(120%) brightness(110%)' : 
+    'blur(40px) saturate(140%) brightness(105%)'
   };
   
   border-radius: 48px;
   overflow: hidden;
   
-  /* 2. Soft inner & outer shadows for depth */
+  /* Enhanced depth with multiple shadow layers */
   box-shadow: 
-    /* Large outer shadow - floating effect */
+    /* Dramatic outer shadows for floating effect */
+    0 60px 120px rgba(0, 0, 0, 0.35),
     0 40px 80px rgba(0, 0, 0, 0.25),
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 10px 20px rgba(0, 0, 0, 0.1),
-    /* Inner shadows - light catching */
-    inset 0 2px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -2px 0 rgba(255, 255, 255, 0.2),
-    inset 2px 0 0 rgba(255, 255, 255, 0.15),
-    inset -2px 0 0 rgba(255, 255, 255, 0.15),
-    /* Subtle glow */
-    0 0 60px rgba(255, 255, 255, 0.1);
+    0 25px 50px rgba(0, 0, 0, 0.2),
+    0 15px 30px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    /* Complex inner shadows for glass depth */
+    inset 0 3px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -3px 0 rgba(255, 255, 255, 0.25),
+    inset 3px 0 0 rgba(255, 255, 255, 0.2),
+    inset -3px 0 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+    /* Enhanced glow for depth */
+    0 0 80px rgba(255, 255, 255, 0.15),
+    0 0 40px rgba(255, 255, 255, 0.1);
   
-  /* 3. Subtle border highlights */
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  /* Enhanced border with gradient */
+  border: 3px solid;
+  border-image: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0.3) 100%
+  ) 1;
   
-  /* Top edge highlight - key light */
+  /* Enhanced top edge highlight with depth */
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 6px;
     background: linear-gradient(90deg, 
       transparent 0%,
-      rgba(255, 255, 255, 0.9) 20%,
-      rgba(255, 255, 255, 0.6) 50%,
-      rgba(255, 255, 255, 0.9) 80%,
+      rgba(255, 255, 255, 0.95) 15%,
+      rgba(255, 255, 255, 0.8) 30%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0.8) 70%,
+      rgba(255, 255, 255, 0.95) 85%,
       transparent 100%
     );
     border-radius: 48px 48px 0 0;
     z-index: 15;
+    box-shadow: 
+      0 1px 3px rgba(255, 255, 255, 0.5),
+      0 0 20px rgba(255, 255, 255, 0.3);
   }
 
-  /* Glass surface reflection with light refraction */
+  /* Enhanced glass surface reflection with multiple layers */
   &::after {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 70%;
-    height: 60%;
+    top: 10px;
+    left: 10px;
+    width: 75%;
+    height: 65%;
     background: 
-      /* Main reflection */
-      radial-gradient(ellipse at 30% 25%, 
-        rgba(255, 255, 255, 0.3) 0%, 
-        rgba(255, 255, 255, 0.15) 30%,
+      /* Primary reflection layer */
+      radial-gradient(ellipse at 35% 25%, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(255, 255, 255, 0.25) 25%,
+        rgba(255, 255, 255, 0.15) 50%,
         rgba(255, 255, 255, 0.05) 60%,
         transparent 100%
       ),
@@ -279,9 +299,9 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
     }
   }};
   
-  /* 8. Minimal, legible typography */
-  font-weight: 200;
-  letter-spacing: -0.03em;
+  /* Enhanced typography for maximum clarity */
+  font-weight: 300;
+  letter-spacing: -0.02em;
   margin-bottom: 0;
   text-align: center;
   line-height: 0.9;
@@ -289,35 +309,43 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
   position: relative;
   z-index: 20;
   
-  /* Glass text with refraction effects */
-  color: transparent;
+  /* Crystal clear glass text with enhanced readability */
+  color: rgba(255, 255, 255, 0.98);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.6) 30%,
-    rgba(255, 255, 255, 0.8) 60%,
-    rgba(255, 255, 255, 0.9) 100%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.85) 75%,
+    rgba(255, 255, 255, 0.98) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  /* High contrast text shadow for legibility */
+  /* Enhanced text shadows for maximum contrast and depth */
   text-shadow: 
-    /* Glass edge highlights */
-    0 0 1px rgba(255, 255, 255, 0.8),
-    1px 1px 2px rgba(255, 255, 255, 0.4),
-    -1px -1px 2px rgba(255, 255, 255, 0.3),
-    /* Depth and readability */
-    0 3px 6px rgba(0, 0, 0, 0.3),
-    0 6px 12px rgba(0, 0, 0, 0.15),
-    /* Glass glow halo */
-    0 0 30px rgba(255, 255, 255, 0.4),
-    0 0 60px rgba(255, 255, 255, 0.2);
+    /* Strong edge definition */
+    0 0 2px rgba(255, 255, 255, 1),
+    1px 1px 3px rgba(255, 255, 255, 0.8),
+    -1px -1px 3px rgba(255, 255, 255, 0.6),
+    2px 2px 4px rgba(255, 255, 255, 0.4),
+    -2px -2px 4px rgba(255, 255, 255, 0.4),
+    /* Strong contrast background */
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    /* Bright halo for visibility */
+    0 0 40px rgba(255, 255, 255, 0.6),
+    0 0 80px rgba(255, 255, 255, 0.4),
+    0 0 120px rgba(255, 255, 255, 0.2);
+  
+  /* Add a subtle text stroke for extra definition */
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
 `;
 
 const DateDisplay = styled(motion.div)<{ theme: any }>`
   font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   margin-bottom: 40px;
   position: relative;
@@ -325,23 +353,28 @@ const DateDisplay = styled(motion.div)<{ theme: any }>`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   
-  /* Glass date text */
-  color: transparent;
+  /* Enhanced glass date text for clarity */
+  color: rgba(255, 255, 255, 0.95);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.5) 40%,
-    rgba(255, 255, 255, 0.7) 80%,
-    rgba(255, 255, 255, 0.6) 100%
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.8) 30%,
+    rgba(255, 255, 255, 0.9) 70%,
+    rgba(255, 255, 255, 0.85) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
   text-shadow: 
-    0 0 1px rgba(255, 255, 255, 0.6),
-    1px 1px 2px rgba(255, 255, 255, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.3);
+    0 0 2px rgba(255, 255, 255, 0.9),
+    1px 1px 3px rgba(255, 255, 255, 0.6),
+    -1px -1px 2px rgba(255, 255, 255, 0.4),
+    0 3px 6px rgba(0, 0, 0, 0.4),
+    0 6px 12px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(255, 255, 255, 0.5),
+    0 0 60px rgba(255, 255, 255, 0.3);
+  
+  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.2);
 `;
 
 const SecondsDisplay = styled.span<{ theme: any }>`
@@ -349,22 +382,78 @@ const SecondsDisplay = styled.span<{ theme: any }>`
   margin-left: 0.15em;
   vertical-align: top;
   
-  /* Glass seconds text */
-  color: transparent;
+  /* Enhanced glass seconds text */
+  color: rgba(255, 255, 255, 0.9);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.6) 100%
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.75) 40%,
+    rgba(255, 255, 255, 0.85) 80%,
+    rgba(255, 255, 255, 0.8) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
   text-shadow: 
-    0 0 1px rgba(255, 255, 255, 0.5),
-    1px 1px 1px rgba(255, 255, 255, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    0 0 15px rgba(255, 255, 255, 0.2);
+    0 0 1px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(255, 255, 255, 0.5),
+    -1px -1px 1px rgba(255, 255, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(255, 255, 255, 0.2);
+    
+  -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.2);
+`;
+
+// Enhanced glass depth layer for more 3D effect
+const GlassDepthLayer = styled(motion.div)`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 38px;
+  z-index: 5;
+  pointer-events: none;
+  
+  /* Additional glass layer for depth */
+  background: linear-gradient(125deg, 
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  
+  /* Inner depth shadows */
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05),
+    inset 2px 0 4px rgba(255, 255, 255, 0.1),
+    inset -2px 0 4px rgba(0, 0, 0, 0.03);
+  
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* Additional reflection layer */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 60%;
+    height: 40%;
+    background: 
+      radial-gradient(ellipse at 40% 30%, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.03) 70%,
+        transparent 100%
+      );
+    border-radius: 30px;
+    filter: blur(2px);
+  }
 `;
 
 // Floating orbs with better glass morphism
@@ -674,6 +763,13 @@ export const Clock: React.FC = () => {
               }
             }}
           >
+            {/* Enhanced Glass Depth Layer for Minimal Style */}
+            <GlassDepthLayer
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.5, delay: 0.8 }}
+            />
+
             <TimeDisplay
               fontSize={state.clockSettings.fontSize}
               theme={state.currentTheme}
@@ -763,6 +859,13 @@ export const Clock: React.FC = () => {
                 }
               }}
             >
+              {/* Enhanced Glass Depth Layer */}
+              <GlassDepthLayer
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+              />
+
               {/* Ripple Effect */}
               {showRipple && (
                 <RippleEffect
