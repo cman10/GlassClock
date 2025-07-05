@@ -309,38 +309,20 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
   position: relative;
   z-index: 20;
   
-  /* Crystal clear glass text with enhanced readability */
-  color: rgba(255, 255, 255, 0.98);
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.9) 25%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(255, 255, 255, 0.85) 75%,
-    rgba(255, 255, 255, 0.98) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Crystal clear, sharp text for maximum readability */
+  color: white;
   
-  /* Enhanced text shadows for maximum contrast and depth */
+  /* Clean, sharp text shadows for contrast and depth */
   text-shadow: 
-    /* Strong edge definition */
-    0 0 2px rgba(255, 255, 255, 1),
-    1px 1px 3px rgba(255, 255, 255, 0.8),
-    -1px -1px 3px rgba(255, 255, 255, 0.6),
-    2px 2px 4px rgba(255, 255, 255, 0.4),
-    -2px -2px 4px rgba(255, 255, 255, 0.4),
-    /* Strong contrast background */
-    0 4px 8px rgba(0, 0, 0, 0.5),
-    0 8px 16px rgba(0, 0, 0, 0.3),
-    0 12px 24px rgba(0, 0, 0, 0.2),
-    /* Bright halo for visibility */
-    0 0 40px rgba(255, 255, 255, 0.6),
-    0 0 80px rgba(255, 255, 255, 0.4),
-    0 0 120px rgba(255, 255, 255, 0.2);
-  
-  /* Add a subtle text stroke for extra definition */
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
+    /* Strong contrast shadows */
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    /* Sharp edge definition */
+    1px 1px 2px rgba(0, 0, 0, 0.9),
+    -1px -1px 2px rgba(0, 0, 0, 0.9),
+    /* Subtle glow for visibility */
+    0 0 20px rgba(255, 255, 255, 0.3);
 `;
 
 const DateDisplay = styled(motion.div)<{ theme: any }>`
@@ -353,28 +335,16 @@ const DateDisplay = styled(motion.div)<{ theme: any }>`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   
-  /* Enhanced glass date text for clarity */
-  color: rgba(255, 255, 255, 0.95);
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.8) 30%,
-    rgba(255, 255, 255, 0.9) 70%,
-    rgba(255, 255, 255, 0.85) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Sharp, clear date text */
+  color: white;
   
   text-shadow: 
-    0 0 2px rgba(255, 255, 255, 0.9),
-    1px 1px 3px rgba(255, 255, 255, 0.6),
-    -1px -1px 2px rgba(255, 255, 255, 0.4),
-    0 3px 6px rgba(0, 0, 0, 0.4),
-    0 6px 12px rgba(0, 0, 0, 0.2),
-    0 0 30px rgba(255, 255, 255, 0.5),
-    0 0 60px rgba(255, 255, 255, 0.3);
-  
-  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.2);
+    0 1px 3px rgba(0, 0, 0, 0.7),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 3px 9px rgba(0, 0, 0, 0.3),
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    -1px -1px 2px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(255, 255, 255, 0.2);
 `;
 
 const SecondsDisplay = styled.span<{ theme: any }>`
@@ -382,28 +352,16 @@ const SecondsDisplay = styled.span<{ theme: any }>`
   margin-left: 0.15em;
   vertical-align: top;
   
-  /* Enhanced glass seconds text */
-  color: rgba(255, 255, 255, 0.9);
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.75) 40%,
-    rgba(255, 255, 255, 0.85) 80%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Sharp, clear seconds text */
+  color: white;
   
   text-shadow: 
-    0 0 1px rgba(255, 255, 255, 0.8),
-    1px 1px 2px rgba(255, 255, 255, 0.5),
-    -1px -1px 1px rgba(255, 255, 255, 0.3),
-    0 2px 6px rgba(0, 0, 0, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 0 25px rgba(255, 255, 255, 0.4),
-    0 0 50px rgba(255, 255, 255, 0.2);
-    
-  -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.2);
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 3px 6px rgba(0, 0, 0, 0.4),
+    1px 1px 1px rgba(0, 0, 0, 0.9),
+    -1px -1px 1px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(255, 255, 255, 0.2);
 `;
 
 // Enhanced glass depth layer for more 3D effect
