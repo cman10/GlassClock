@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
 
@@ -17,29 +17,85 @@ const BreathingContainer = styled(motion.div)<{ theme: any }>`
   color: ${props => props.theme.textColor};
   padding: 20px;
   user-select: none;
+  position: relative;
+  overflow: hidden;
 `;
 
 const GuideTitle = styled(motion.h1)`
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 30px;
   text-align: center;
-  opacity: 0.9;
+  opacity: 0.95;
+  position: relative;
+  z-index: 20;
+  
+  /* Crystal clear text optimized for liquid glass */
+  color: rgba(255, 255, 255, 0.95);
+  
+  /* Advanced text rendering for clarity */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Adaptive shadow system for content separation */
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 6px 12px rgba(0, 0, 0, 0.25),
+    1px 1px 2px rgba(0, 0, 0, 0.7),
+    -1px -1px 2px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(255, 255, 255, 0.15);
 `;
 
 const BreathingCircle = styled(motion.div)<{ theme: any; size: number }>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   border-radius: 50%;
-  background: radial-gradient(circle, 
-    ${props => props.theme.accentColor}20, 
-    ${props => props.theme.accentColor}10, 
-    transparent
-  );
-  border: 3px solid ${props => props.theme.accentColor};
   position: relative;
   margin-bottom: 40px;
-  box-shadow: 0 0 30px ${props => props.theme.accentColor}30;
+  z-index: 10;
+  
+  /* Liquid glass circle styling */
+  background: radial-gradient(circle at 35% 35%, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.05) 70%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  
+  /* Advanced backdrop filtering for light manipulation */
+  backdrop-filter: blur(25px) saturate(150%) brightness(110%);
+  
+  /* Liquid Glass Border - Light refraction effect */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  
+  /* Multi-layered shadow system */
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 0 50px ${props => props.theme.accentColor}20;
+  
+  /* Light bending effects */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(255, 255, 255, 0.15) 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+  }
 `;
 
 const InnerCircle = styled(motion.div)<{ theme: any }>`
