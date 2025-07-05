@@ -125,135 +125,157 @@ const GlassTimeContainer = styled(motion.div)<{ theme: any; isLowTransparency?: 
   padding: 60px 80px;
   z-index: 10;
   transform-style: preserve-3d;
+  cursor: pointer;
   
-  /* Enhanced multi-layer glass with greater depth */
+  /* True Liquid Glass Material */
   background: ${props => props.isLowTransparency ? 
-    `linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.45) 0%,
-      rgba(255, 255, 255, 0.25) 25%,
-      rgba(255, 255, 255, 0.35) 75%,
-      rgba(255, 255, 255, 0.4) 100%
-    )` :
-    `linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.22) 0%,
-      rgba(255, 255, 255, 0.08) 20%,
-      rgba(255, 255, 255, 0.05) 40%,
-      rgba(255, 255, 255, 0.12) 60%,
-      rgba(255, 255, 255, 0.18) 80%,
-      rgba(255, 255, 255, 0.15) 100%
-    )`
+    'rgba(255, 255, 255, 0.15)' : 
+    'rgba(255, 255, 255, 0.08)'
   };
   
-  backdrop-filter: ${props => props.isLowTransparency ? 
-    'blur(25px) saturate(120%) brightness(110%)' : 
-    'blur(40px) saturate(140%) brightness(105%)'
-  };
+  /* Advanced backdrop filtering for light manipulation */
+  backdrop-filter: 
+    blur(${props => props.isLowTransparency ? '20px' : '30px'})
+    saturate(180%)
+    brightness(110%)
+    contrast(120%);
   
+  /* Dynamic border radius for liquid feel */
   border-radius: 48px;
-  overflow: hidden;
+  overflow: visible;
   
-  /* Enhanced depth with multiple shadow layers */
+  /* Liquid Glass Border - Light refraction effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Multi-layered shadow system for depth and lensing */
   box-shadow: 
-    /* Dramatic outer shadows for floating effect */
-    0 60px 120px rgba(0, 0, 0, 0.35),
-    0 40px 80px rgba(0, 0, 0, 0.25),
-    0 25px 50px rgba(0, 0, 0, 0.2),
-    0 15px 30px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1),
-    /* Complex inner shadows for glass depth */
-    inset 0 3px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -3px 0 rgba(255, 255, 255, 0.25),
-    inset 3px 0 0 rgba(255, 255, 255, 0.2),
-    inset -3px 0 0 rgba(255, 255, 255, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3),
-    /* Enhanced glow for depth */
-    0 0 80px rgba(255, 255, 255, 0.15),
-    0 0 40px rgba(255, 255, 255, 0.1);
+    /* Primary depth shadow */
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    /* Secondary ambient shadow */
+    0 8px 16px -4px rgba(0, 0, 0, 0.12),
+    /* Light interaction shadow */
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    /* Adaptive content separation shadow */
+    0 1px 4px rgba(0, 0, 0, 0.1),
+    /* Inner glow for light concentration */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   
-  /* Enhanced border with gradient */
-  border: 3px solid;
-  border-image: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.2) 25%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.1) 75%,
-    rgba(255, 255, 255, 0.3) 100%
-  ) 1;
-  
-  /* Enhanced top edge highlight with depth */
+  /* Light bending and lensing effects */
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(255, 255, 255, 0.95) 15%,
-      rgba(255, 255, 255, 0.8) 30%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 0.8) 70%,
-      rgba(255, 255, 255, 0.95) 85%,
-      transparent 100%
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(255, 255, 255, 0.1) 100%
     );
-    border-radius: 48px 48px 0 0;
-    z-index: 15;
-    box-shadow: 
-      0 1px 3px rgba(255, 255, 255, 0.5),
-      0 0 20px rgba(255, 255, 255, 0.3);
+    border-radius: 48px;
+    pointer-events: none;
+    z-index: -1;
   }
-
-  /* Enhanced glass surface reflection with multiple layers */
+  
+  /* Dynamic light concentration layer */
   &::after {
     content: '';
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 75%;
-    height: 65%;
+    top: 8px;
+    left: 8px;
+    width: 40%;
+    height: 30%;
     background: 
-      /* Primary reflection layer */
-      radial-gradient(ellipse at 35% 25%, 
-        rgba(255, 255, 255, 0.4) 0%, 
-        rgba(255, 255, 255, 0.25) 25%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.05) 60%,
-        transparent 100%
-      ),
-      /* Secondary reflection */
-      linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.25) 0%, 
-        rgba(255, 255, 255, 0.12) 25%,
-        rgba(255, 255, 255, 0.06) 50%,
-        rgba(255, 255, 255, 0.08) 75%,
+      radial-gradient(ellipse at 50% 50%, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.05) 50%,
         transparent 100%
       );
-    border-radius: 40px;
+    border-radius: 24px;
     pointer-events: none;
     filter: blur(1px);
-    z-index: 12;
+    opacity: 0.8;
   }
+  
+  /* Responsive interaction states */
+  &:hover {
+    /* Light energization on hover */
+    backdrop-filter: 
+      blur(${props => props.isLowTransparency ? '22px' : '32px'})
+      saturate(200%)
+      brightness(115%)
+      contrast(125%);
+    
+    box-shadow: 
+      0 32px 64px -12px rgba(0, 0, 0, 0.3),
+      0 12px 24px -4px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.12),
+      inset 0 2px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.08),
+      /* Inner illumination on interaction */
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+    
+    /* Light bending intensification */
+    &::before {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(255, 255, 255, 0.15) 100%
+      );
+    }
+    
+    &::after {
+      opacity: 1;
+      background: 
+        radial-gradient(ellipse at 50% 50%, 
+          rgba(255, 255, 255, 0.2) 0%, 
+          rgba(255, 255, 255, 0.08) 50%,
+          transparent 100%
+        );
+    }
+  }
+  
+  /* Active state - gel-like compression */
+  &:active {
+    transform: scale(0.998);
+    backdrop-filter: 
+      blur(${props => props.isLowTransparency ? '18px' : '28px'})
+      saturate(160%)
+      brightness(108%)
+      contrast(115%);
+  }
+  
+  /* Adaptive behavior for content separation */
+  ${props => !props.isLowTransparency && `
+    /* Increase shadow opacity over bright content */
+    &[data-content-light="true"] {
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.35),
+        0 8px 16px -4px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    }
+    
+    /* Reduce shadow opacity over dark content */
+    &[data-content-dark="true"] {
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.15),
+        0 8px 16px -4px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.12),
+        0 1px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+    }
+  `}
+  
 
-  /* Gradient border overlay - light refraction simulation */
-  &:before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0.2) 25%,
-      rgba(255, 255, 255, 0.4) 50%,
-      rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0.5) 100%
-    );
-    border-radius: 50px;
-    z-index: -1;
-    opacity: 0.7;
-  }
 
   @media (max-width: 768px) {
     padding: 40px 60px;
@@ -299,9 +321,9 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
     }
   }};
   
-  /* Enhanced typography for maximum clarity */
-  font-weight: 300;
-  letter-spacing: -0.02em;
+  /* Liquid Glass Typography - Ultra-clear and readable */
+  font-weight: 400;
+  letter-spacing: -0.015em;
   margin-bottom: 0;
   text-align: center;
   line-height: 0.9;
@@ -309,20 +331,73 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
   position: relative;
   z-index: 20;
   
-  /* Crystal clear, sharp text for maximum readability */
-  color: white;
+  /* Crystal clear text optimized for liquid glass material */
+  color: rgba(255, 255, 255, 0.98);
   
-  /* Clean, sharp text shadows for contrast and depth */
+  /* Advanced text rendering for clarity */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  
+  /* Adaptive shadow system for content separation */
   text-shadow: 
-    /* Strong contrast shadows */
-    0 2px 4px rgba(0, 0, 0, 0.8),
-    0 4px 8px rgba(0, 0, 0, 0.6),
-    0 6px 12px rgba(0, 0, 0, 0.4),
-    /* Sharp edge definition */
-    1px 1px 2px rgba(0, 0, 0, 0.9),
-    -1px -1px 2px rgba(0, 0, 0, 0.9),
-    /* Subtle glow for visibility */
-    0 0 20px rgba(255, 255, 255, 0.3);
+    /* Primary contrast shadow */
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 6px 12px rgba(0, 0, 0, 0.25),
+    /* Edge definition */
+    1px 1px 2px rgba(0, 0, 0, 0.7),
+    -1px -1px 2px rgba(0, 0, 0, 0.7),
+    /* Legibility glow */
+    0 0 15px rgba(255, 255, 255, 0.15);
+  
+  /* Light interaction effects for liquid glass */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: 
+      radial-gradient(ellipse at 50% 20%, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        transparent 60%
+      );
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Dynamic light bending on hover */
+  &:hover::before {
+    background: 
+      radial-gradient(ellipse at 50% 20%, 
+        rgba(255, 255, 255, 0.06) 0%, 
+        rgba(255, 255, 255, 0.02) 40%,
+        transparent 70%
+      );
+  }
+  
+  /* Accessibility and contrast optimization */
+  @media (prefers-contrast: high) {
+    color: white;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.9),
+      0 4px 8px rgba(0, 0, 0, 0.8),
+      0 6px 12px rgba(0, 0, 0, 0.6),
+      2px 2px 4px rgba(0, 0, 0, 0.9),
+      -2px -2px 4px rgba(0, 0, 0, 0.9),
+      0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      display: none;
+    }
+  }
 `;
 
 const DateDisplay = styled(motion.div)<{ theme: any }>`
@@ -511,6 +586,7 @@ export const Clock: React.FC = () => {
   const [time, setTime] = useState(new Date());
   const [showRipple, setShowRipple] = useState(false);
   const [isLowTransparency, setIsLowTransparency] = useState(false);
+  const [backgroundLuminance, setBackgroundLuminance] = useState<'light' | 'dark' | 'auto'>('auto');
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse position for parallax effect
@@ -685,6 +761,8 @@ export const Clock: React.FC = () => {
           <GlassTimeContainer
             theme={state.currentTheme}
             isLowTransparency={isLowTransparency}
+            data-content-light={backgroundLuminance === 'light'}
+            data-content-dark={backgroundLuminance === 'dark'}
             style={{
               rotateX,
               rotateY,
@@ -731,6 +809,8 @@ export const Clock: React.FC = () => {
             <TimeDisplay
               fontSize={state.clockSettings.fontSize}
               theme={state.currentTheme}
+              data-bg-light={backgroundLuminance === 'light'}
+              data-bg-dark={backgroundLuminance === 'dark'}
               style={{ fontSize: 'clamp(4rem, 10vw, 8rem)' }}
               initial={{ 
                 scale: 0.9, 
@@ -783,6 +863,8 @@ export const Clock: React.FC = () => {
             <GlassTimeContainer
               theme={state.currentTheme}
               isLowTransparency={isLowTransparency}
+              data-content-light={backgroundLuminance === 'light'}
+              data-content-dark={backgroundLuminance === 'dark'}
               style={{
                 rotateX,
                 rotateY,
@@ -836,6 +918,8 @@ export const Clock: React.FC = () => {
               <TimeDisplay
                 fontSize={state.clockSettings.fontSize}
                 theme={state.currentTheme}
+                data-bg-light={backgroundLuminance === 'light'}
+                data-bg-dark={backgroundLuminance === 'dark'}
                 initial={{ 
                   scale: 0.9, 
                   opacity: 0, 
