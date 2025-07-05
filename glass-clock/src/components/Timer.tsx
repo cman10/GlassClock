@@ -102,8 +102,8 @@ const LiquidGlassTimerContainer = styled(motion.div)<{ theme: any; isLowTranspar
   border-radius: 48px;
   overflow: visible;
   
-  /* Liquid Glass Border - Light refraction effect */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Remove visible border for seamless liquid glass effect */
+  border: none;
   
   /* Multi-layered shadow system for depth and lensing */
   box-shadow: 
@@ -111,8 +111,6 @@ const LiquidGlassTimerContainer = styled(motion.div)<{ theme: any; isLowTranspar
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     /* Secondary ambient shadow */
     0 8px 16px -4px rgba(0, 0, 0, 0.12),
-    /* Light interaction shadow */
-    0 0 0 1px rgba(255, 255, 255, 0.05),
     /* Adaptive content separation shadow */
     0 1px 4px rgba(0, 0, 0, 0.1),
     /* Inner glow for light concentration */
@@ -170,7 +168,6 @@ const LiquidGlassTimerContainer = styled(motion.div)<{ theme: any; isLowTranspar
     box-shadow: 
       0 32px 64px -12px rgba(0, 0, 0, 0.3),
       0 12px 24px -4px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.1),
       0 2px 8px rgba(0, 0, 0, 0.12),
       inset 0 2px 0 rgba(255, 255, 255, 0.2),
       inset 0 -2px 0 rgba(255, 255, 255, 0.08),
@@ -370,8 +367,8 @@ const ControlButton = styled(motion.button)<{ theme: any; variant?: 'primary' | 
   /* Advanced backdrop filtering for light manipulation */
   backdrop-filter: blur(20px) saturate(150%) brightness(110%);
   
-  /* Liquid Glass Border - Light refraction effect */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Remove visible border for seamless liquid glass effect */
+  border: none;
   
   /* Multi-layered shadow system */
   box-shadow: 

@@ -67,8 +67,8 @@ const BreathingCircle = styled(motion.div)<{ theme: any; size: number }>`
   /* Advanced backdrop filtering for light manipulation */
   backdrop-filter: blur(25px) saturate(150%) brightness(110%);
   
-  /* Liquid Glass Border - Light refraction effect */
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  /* Remove visible border for seamless liquid glass effect */
+  border: none;
   
   /* Multi-layered shadow system */
   box-shadow: 
@@ -106,8 +106,17 @@ const InnerCircle = styled(motion.div)<{ theme: any }>`
   width: 80%;
   height: 80%;
   border-radius: 50%;
-  background: ${props => props.theme.accentColor}40;
-  border: 2px solid ${props => props.theme.accentColor};
+  background: radial-gradient(circle at 40% 40%, 
+    ${props => props.theme.accentColor}40 0%, 
+    ${props => props.theme.accentColor}20 50%,
+    ${props => props.theme.accentColor}10 100%
+  );
+  border: none;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px ${props => props.theme.accentColor}30;
 `;
 
 const PhaseIndicator = styled(motion.div)`
