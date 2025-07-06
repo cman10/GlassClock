@@ -19,6 +19,7 @@ import { PremiumPanel } from './components/PremiumPanel';
 import { AnalyticsPanel } from './components/AnalyticsPanel';
 import { IntegrationsPanel } from './components/IntegrationsPanel';
 import { NotificationSystem } from './components/NotificationSystem';
+import SpotifyController from './components/SpotifyController';
 import SmartCoachPanel from './components/SmartCoachPanel';
 import MoodTracker from './components/MoodTracker';
 import SmartScheduler from './components/SmartScheduler';
@@ -783,6 +784,30 @@ const AppContent: React.FC = () => {
         return <MLModelManager />;
       case 'device-sync':
         return <CrossDeviceSyncManager />;
+      case 'spotify':
+        return (
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <button 
+              onClick={() => dispatch({ type: 'SET_CURRENT_VIEW', payload: 'main' })}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                left: '20px',
+                zIndex: 1000,
+                padding: '10px 15px',
+                backgroundColor: state.currentTheme.accentColor,
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              ← Back to Clock
+            </button>
+            <SpotifyController />
+          </div>
+        );
       default:
         return (
           <ModeContainer>

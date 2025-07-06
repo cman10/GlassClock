@@ -75,9 +75,17 @@ The app works completely offline once installed, thanks to service worker cachin
 
 | Key | Action |
 |-----|--------|
+| `C` | Clock Mode |
+| `T` | Timer Mode |
+| `B` | Breathing Mode |
+| `L` | Alarm Mode |
+| `A` | AI Coach |
+| `M` | Mood Tracker |
+| `P` | Spotify Music Control |
 | `S` | Open/close Settings |
 | `F` | Toggle Fullscreen |
 | `I` | Show/hide Info panel |
+| `Space` | Start/Pause (Timer/Breathing) |
 | `ESC` | Close panels or exit fullscreen |
 
 ## 🎨 Themes
@@ -123,6 +131,45 @@ Target performance metrics:
 - **First Load**: < 3 seconds on 3G
 - **Bundle Size**: < 1MB initial bundle
 - **Memory Usage**: < 50MB average
+
+## 🎵 Spotify Integration
+
+### Setup Instructions
+
+1. **Create Spotify App**
+   - Visit [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+   - Click "Create App" and choose "Web App"
+   - Fill in app details (name, description, etc.)
+
+2. **Configure Redirect URIs**
+   Add these redirect URIs in your Spotify app settings:
+   - Development: `http://localhost:3000/callback`
+   - Production: `https://yourdomain.com/callback`
+
+3. **Set Environment Variable**
+   Create a `.env` file in the root directory:
+   ```env
+   REACT_APP_SPOTIFY_CLIENT_ID=your_client_id_here
+   ```
+
+4. **Security Note**
+   - We use PKCE (Proof Key for Code Exchange) authentication flow
+   - No client secret needed (secure for client-side apps)
+   - All authentication happens in the browser
+
+### Features
+- **Music Control** - Play, pause, skip tracks directly from the app
+- **Volume Control** - Adjust playback volume with a smooth slider
+- **Current Track Display** - See what's playing with album art and artist info
+- **Playlist Access** - Browse and play your Spotify playlists
+- **Device Management** - Control playback across your Spotify devices
+- **Visual Feedback** - Beautiful liquid glass design with audio visualizations
+
+### Usage
+1. Click the 🎵 button in the controls or press `P`
+2. Click "Connect Spotify" to authenticate
+3. Grant necessary permissions for music control
+4. Enjoy seamless music integration with your relaxing clock!
 
 ## 🔧 Development
 

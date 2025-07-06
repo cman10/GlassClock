@@ -349,6 +349,10 @@ export const Controls: React.FC = () => {
         event.preventDefault();
         dispatch({ type: 'SET_CURRENT_VIEW', payload: 'mood' });
       }
+      if (event.key === 'p' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        dispatch({ type: 'SET_CURRENT_VIEW', payload: 'spotify' });
+      }
       if (event.key === 'Escape') {
         if (state.isFullscreen) {
           exitFullscreen();
@@ -568,6 +572,17 @@ export const Controls: React.FC = () => {
           ✅
         </ControlButton>
 
+        {/* Spotify Music Control */}
+        <ControlButton
+          theme={state.currentTheme}
+          onClick={() => dispatch({ type: 'SET_CURRENT_VIEW', payload: 'spotify' })}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          title="Spotify Music Control"
+        >
+          🎵
+        </ControlButton>
+
         {/* Phase 6: Advanced Analytics & ML */}
         <ControlButton
           theme={state.currentTheme}
@@ -646,6 +661,7 @@ export const Controls: React.FC = () => {
             <KeyboardShortcut>L</KeyboardShortcut> - Alarm Mode<br/>
             <KeyboardShortcut>A</KeyboardShortcut> - AI Coach<br/>
             <KeyboardShortcut>M</KeyboardShortcut> - Mood Tracker<br/>
+            <KeyboardShortcut>P</KeyboardShortcut> - Spotify Music<br/>
             <KeyboardShortcut>Space</KeyboardShortcut> - Start/Pause<br/>
             <KeyboardShortcut>S</KeyboardShortcut> - Settings<br/>
             <KeyboardShortcut>F</KeyboardShortcut> - Fullscreen<br/>

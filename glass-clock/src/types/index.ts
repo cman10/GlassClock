@@ -377,7 +377,7 @@ export interface AppState {
   isFullscreen: boolean;
   isSettingsOpen: boolean;
   activeMode: 'clock' | 'timer' | 'meditation' | 'breathing' | 'alarm' | 'widget';
-  currentView: 'main' | 'themes' | 'customize' | 'stats' | 'about' | 'premium' | 'integrations' | 'analytics' | 'coach' | 'mood' | 'schedule' | 'habits' | 'focus' | 'ai-settings' | 'advanced-analytics' | 'ml-models' | 'device-sync';
+  currentView: 'main' | 'themes' | 'customize' | 'stats' | 'about' | 'premium' | 'integrations' | 'analytics' | 'coach' | 'mood' | 'schedule' | 'habits' | 'focus' | 'ai-settings' | 'advanced-analytics' | 'ml-models' | 'device-sync' | 'spotify';
   installPromptDismissed: boolean;
   onboardingCompleted: boolean;
   lastActiveDate: string;
@@ -465,7 +465,7 @@ export type AppAction =
   | { type: 'TOGGLE_SETTINGS' }
   | { type: 'SET_FULLSCREEN'; payload: boolean }
   | { type: 'SET_ACTIVE_MODE'; payload: 'clock' | 'timer' | 'meditation' | 'breathing' | 'alarm' | 'widget' }
-  | { type: 'SET_CURRENT_VIEW'; payload: 'main' | 'themes' | 'customize' | 'stats' | 'about' | 'premium' | 'integrations' | 'analytics' | 'coach' | 'mood' | 'schedule' | 'habits' | 'focus' | 'ai-settings' | 'advanced-analytics' | 'ml-models' | 'device-sync' }
+  | { type: 'SET_CURRENT_VIEW'; payload: 'main' | 'themes' | 'customize' | 'stats' | 'about' | 'premium' | 'integrations' | 'analytics' | 'coach' | 'mood' | 'schedule' | 'habits' | 'focus' | 'ai-settings' | 'advanced-analytics' | 'ml-models' | 'device-sync' | 'spotify' }
   | { type: 'START_TIMER' }
   | { type: 'PAUSE_TIMER' }
   | { type: 'RESET_TIMER' }
