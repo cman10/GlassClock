@@ -277,40 +277,147 @@ const GlassTimeContainer = styled(motion.div)<{ theme: any; isLowTransparency?: 
   
 
 
-  @media (max-width: 768px) {
-    padding: 40px 60px;
-    border-radius: 36px;
+  /* Tablet optimization - maintain rich liquid glass effects */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    padding: 50px 70px;
+    border-radius: 42px;
     
     &::before {
-      border-radius: 36px 36px 0 0;
-      height: 3px;
+      border-radius: 42px;
     }
     
     &::after {
-      border-radius: 30px;
-      top: 6px;
-      left: 6px;
+      border-radius: 21px;
+      top: 7px;
+      left: 7px;
     }
   }
   
-  @media (max-width: 480px) {
-    padding: 30px 45px;
-    border-radius: 28px;
+  /* Mobile optimization - simplified for performance and readability */
+  @media (max-width: 768px) {
+    padding: 25px 35px;
+    border-radius: 24px;
+    margin: 20px 0;
+    
+    /* Reduce blur for mobile performance */
+    backdrop-filter: 
+      blur(${props => props.isLowTransparency ? '15px' : '20px'})
+      saturate(140%)
+      brightness(108%)
+      contrast(110%);
+    
+    /* Simplified shadows for mobile */
+    box-shadow: 
+      0 15px 30px -8px rgba(0, 0, 0, 0.2),
+      0 5px 12px -3px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
     
     &::before {
-      border-radius: 28px 28px 0 0;
-      height: 2px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(255, 255, 255, 0.08) 100%
+      );
     }
     
     &::after {
-      border-radius: 24px;
+      border-radius: 12px;
       top: 4px;
       left: 4px;
+      width: 35%;
+      height: 25%;
+      filter: blur(0.5px);
+      opacity: 0.6;
+    }
+    
+    /* Simplified hover states for mobile */
+    &:hover {
+      backdrop-filter: 
+        blur(${props => props.isLowTransparency ? '18px' : '25px'})
+        saturate(160%)
+        brightness(112%)
+        contrast(115%);
+      
+      box-shadow: 
+        0 20px 40px -8px rgba(0, 0, 0, 0.25),
+        0 8px 16px -3px rgba(0, 0, 0, 0.12),
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+      
+      &::before {
+        background: linear-gradient(135deg, 
+          rgba(255, 255, 255, 0.12) 0%,
+          transparent 25%,
+          transparent 75%,
+          rgba(255, 255, 255, 0.12) 100%
+        );
+      }
+      
+      &::after {
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  /* Small mobile phones - ultra-compact design */
+  @media (max-width: 480px) {
+    padding: 20px 25px;
+    border-radius: 20px;
+    margin: 15px 0;
+    
+    /* Further reduced effects for small screens */
+    backdrop-filter: 
+      blur(${props => props.isLowTransparency ? '12px' : '16px'})
+      saturate(130%)
+      brightness(106%)
+      contrast(105%);
+    
+    /* Minimal shadows for performance */
+    box-shadow: 
+      0 10px 20px -6px rgba(0, 0, 0, 0.18),
+      0 4px 8px -2px rgba(0, 0, 0, 0.08),
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    &::before {
+      border-radius: 20px;
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.06) 0%,
+        transparent 35%,
+        transparent 65%,
+        rgba(255, 255, 255, 0.06) 100%
+      );
+    }
+    
+    &::after {
+      border-radius: 10px;
+      top: 3px;
+      left: 3px;
+      width: 30%;
+      height: 20%;
+      filter: none;
+      opacity: 0.5;
+    }
+    
+    /* Touch-optimized states */
+    &:active {
+      transform: scale(0.995);
+      backdrop-filter: 
+        blur(${props => props.isLowTransparency ? '10px' : '14px'})
+        saturate(120%)
+        brightness(104%)
+        contrast(102%);
     }
   }
 `;
 
 const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
+  /* Desktop and tablet font sizes - rich visual experience */
   font-size: ${props => {
     switch (props.fontSize) {
       case 'small': return 'clamp(4rem, 10vw, 7rem)';
@@ -380,6 +487,100 @@ const TimeDisplay = styled(motion.div)<{ fontSize: string; theme: any }>`
       );
   }
   
+  /* Mobile optimization - readability focused */
+  @media (max-width: 768px) {
+    /* Mobile-optimized font sizes */
+    font-size: ${props => {
+      switch (props.fontSize) {
+        case 'small': return 'clamp(2.5rem, 8vw, 4rem)';
+        case 'medium': return 'clamp(3rem, 10vw, 5rem)';
+        case 'large': return 'clamp(3.5rem, 12vw, 6rem)';
+        case 'xl': return 'clamp(4rem, 14vw, 7rem)';
+        default: return 'clamp(3.5rem, 12vw, 6rem)';
+      }
+    }};
+    
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    
+    /* Simplified text shadows for mobile performance */
+    text-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.8),
+      0 2px 6px rgba(0, 0, 0, 0.4),
+      1px 1px 1px rgba(0, 0, 0, 0.9),
+      -1px -1px 1px rgba(0, 0, 0, 0.9),
+      0 0 8px rgba(255, 255, 255, 0.1);
+    
+    /* Simplified light effects */
+    &::before {
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: 
+        radial-gradient(ellipse at 50% 20%, 
+          rgba(255, 255, 255, 0.02) 0%, 
+          transparent 50%
+        );
+      border-radius: 12px;
+    }
+    
+    &:hover::before {
+      background: 
+        radial-gradient(ellipse at 50% 20%, 
+          rgba(255, 255, 255, 0.04) 0%, 
+          rgba(255, 255, 255, 0.01) 30%,
+          transparent 60%
+        );
+    }
+  }
+  
+  /* Small mobile phones - ultra-compact */
+  @media (max-width: 480px) {
+    /* Ultra-compact font sizes */
+    font-size: ${props => {
+      switch (props.fontSize) {
+        case 'small': return 'clamp(2rem, 7vw, 3rem)';
+        case 'medium': return 'clamp(2.5rem, 9vw, 4rem)';
+        case 'large': return 'clamp(3rem, 11vw, 5rem)';
+        case 'xl': return 'clamp(3.5rem, 13vw, 6rem)';
+        default: return 'clamp(3rem, 11vw, 5rem)';
+      }
+    }};
+    
+    line-height: 1;
+    letter-spacing: 0;
+    
+    /* Minimal text shadows for performance */
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.9),
+      0 2px 4px rgba(0, 0, 0, 0.5),
+      1px 1px 1px rgba(0, 0, 0, 1),
+      -1px -1px 1px rgba(0, 0, 0, 1);
+    
+    /* Minimal light effects */
+    &::before {
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: 
+        radial-gradient(ellipse at 50% 20%, 
+          rgba(255, 255, 255, 0.015) 0%, 
+          transparent 40%
+        );
+      border-radius: 8px;
+    }
+    
+    &:hover::before {
+      background: 
+        radial-gradient(ellipse at 50% 20%, 
+          rgba(255, 255, 255, 0.03) 0%, 
+          transparent 50%
+        );
+    }
+  }
+  
   /* Accessibility and contrast optimization */
   @media (prefers-contrast: high) {
     color: white;
@@ -420,6 +621,34 @@ const DateDisplay = styled(motion.div)<{ theme: any }>`
     1px 1px 2px rgba(0, 0, 0, 0.8),
     -1px -1px 2px rgba(0, 0, 0, 0.8),
     0 0 15px rgba(255, 255, 255, 0.2);
+  
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+    margin-bottom: 25px;
+    letter-spacing: 0.08em;
+    
+    /* Simplified shadows for mobile performance */
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      1px 1px 1px rgba(0, 0, 0, 0.9),
+      -1px -1px 1px rgba(0, 0, 0, 0.9),
+      0 0 8px rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Small mobile phones */
+  @media (max-width: 480px) {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    margin-bottom: 20px;
+    letter-spacing: 0.06em;
+    
+    /* Minimal shadows for performance */
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.9),
+      1px 1px 1px rgba(0, 0, 0, 1),
+      -1px -1px 1px rgba(0, 0, 0, 1);
+  }
 `;
 
 const SecondsDisplay = styled.span<{ theme: any }>`
@@ -437,6 +666,31 @@ const SecondsDisplay = styled.span<{ theme: any }>`
     1px 1px 1px rgba(0, 0, 0, 0.9),
     -1px -1px 1px rgba(0, 0, 0, 0.9),
     0 0 10px rgba(255, 255, 255, 0.2);
+  
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    font-size: 0.4em;
+    margin-left: 0.12em;
+    
+    /* Simplified shadows for mobile performance */
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.9),
+      1px 1px 1px rgba(0, 0, 0, 1),
+      -1px -1px 1px rgba(0, 0, 0, 1),
+      0 0 6px rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Small mobile phones */
+  @media (max-width: 480px) {
+    font-size: 0.35em;
+    margin-left: 0.1em;
+    
+    /* Minimal shadows for performance */
+    text-shadow: 
+      0 1px 1px rgba(0, 0, 0, 1),
+      1px 1px 0px rgba(0, 0, 0, 1),
+      -1px -1px 0px rgba(0, 0, 0, 1);
+  }
 `;
 
 // Enhanced glass depth layer for more 3D effect
@@ -487,6 +741,66 @@ const GlassDepthLayer = styled(motion.div)`
     border-radius: 30px;
     filter: blur(2px);
   }
+  
+  /* Mobile optimization - simplified depth layer */
+  @media (max-width: 768px) {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 20px;
+    
+    backdrop-filter: blur(12px) saturate(110%);
+    
+    /* Simplified shadows for mobile */
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.15),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+    
+    &::before {
+      top: 3px;
+      left: 3px;
+      width: 50%;
+      height: 30%;
+      border-radius: 15px;
+      filter: blur(1px);
+      background: 
+        radial-gradient(ellipse at 40% 30%, 
+          rgba(255, 255, 255, 0.1) 0%, 
+          rgba(255, 255, 255, 0.05) 50%,
+          transparent 100%
+        );
+    }
+  }
+  
+  /* Small mobile phones - minimal depth layer */
+  @media (max-width: 480px) {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 16px;
+    
+    backdrop-filter: blur(8px) saturate(105%);
+    
+    /* Minimal shadows for performance */
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    
+    &::before {
+      top: 2px;
+      left: 2px;
+      width: 40%;
+      height: 25%;
+      border-radius: 10px;
+      filter: none;
+      background: 
+        radial-gradient(ellipse at 40% 30%, 
+          rgba(255, 255, 255, 0.08) 0%, 
+          transparent 60%
+        );
+    }
+  }
 `;
 
 // Floating orbs with better glass morphism
@@ -535,6 +849,70 @@ const FloatingOrb = styled(motion.div)<{ delay: number; size: number }>`
     border-radius: 50%;
     filter: blur(2px);
   }
+  
+  /* Mobile optimization - simplified orbs */
+  @media (max-width: 768px) {
+    width: ${(props) => Math.max(props.size * 0.7, 20)}px;
+    height: ${(props) => Math.max(props.size * 0.7, 20)}px;
+    
+    background: 
+      radial-gradient(circle at 35% 35%, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 100%
+      );
+    backdrop-filter: blur(10px);
+    
+    /* Simplified shadows for mobile */
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 10px rgba(255, 255, 255, 0.05);
+    
+    /* Simplified highlight */
+    &::before {
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+      );
+      filter: blur(1px);
+    }
+  }
+  
+  /* Small mobile phones - hide some orbs for performance */
+  @media (max-width: 480px) {
+    /* Hide smaller orbs on very small screens */
+    ${(props) => props.size < 40 && `
+      display: none;
+    `}
+    
+    width: ${(props) => Math.max(props.size * 0.5, 24)}px;
+    height: ${(props) => Math.max(props.size * 0.5, 24)}px;
+    
+    background: 
+      radial-gradient(circle at 35% 35%, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 60%,
+        transparent 100%
+      );
+    backdrop-filter: blur(6px);
+    
+    /* Minimal shadows for performance */
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    
+    /* Minimal highlight */
+    &::before {
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 70%
+      );
+      filter: none;
+    }
+  }
 `;
 
 // Ripple effect for interactions
@@ -578,6 +956,48 @@ const AccessibilityToggle = styled(motion.button)<{ isActive: boolean }>`
       'rgba(255, 255, 255, 0.9)' : 
       'rgba(255, 255, 255, 0.3)'
     };
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  /* Mobile optimization - larger touch target */
+  @media (max-width: 768px) {
+    top: 15px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    
+    /* Ensure minimum touch target size */
+    min-width: 44px;
+    min-height: 44px;
+    
+    /* Enhanced touch feedback */
+    &:active {
+      transform: scale(0.9);
+      background: ${props => props.isActive ? 
+        'rgba(255, 255, 255, 0.95)' : 
+        'rgba(255, 255, 255, 0.4)'
+      };
+    }
+  }
+  
+  /* Small mobile phones - even larger for better accessibility */
+  @media (max-width: 480px) {
+    top: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    
+    /* Larger minimum touch target */
+    min-width: 48px;
+    min-height: 48px;
+    
+    /* Simplified backdrop for performance */
+    backdrop-filter: blur(6px);
   }
 `;
 

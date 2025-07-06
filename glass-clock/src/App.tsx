@@ -75,6 +75,70 @@ const GlobalStyle = createGlobalStyle<{ theme: any }>`
     overflow: hidden;
   }
 
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    body {
+      /* Prevent overscroll bounce on mobile */
+      overscroll-behavior: none;
+      /* Optimize touch scrolling */
+      -webkit-overflow-scrolling: touch;
+      /* Reduce glass overlay complexity on mobile */
+      &::before {
+        background: 
+          radial-gradient(circle at 30% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 40%),
+          radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.05) 0%, transparent 40%);
+        animation: liquidFlow 30s ease-in-out infinite;
+      }
+    }
+    
+    #root {
+      /* Ensure proper mobile viewport */
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh; /* Dynamic viewport height for mobile browsers */
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  /* Small mobile phones - minimal animations for performance */
+  @media (max-width: 480px) {
+    body {
+      &::before {
+        background: 
+          radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.03) 0%, transparent 30%);
+        animation: none; /* Disable animations on very small screens */
+      }
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (pointer: coarse) {
+    /* Optimize for touch interfaces */
+    * {
+      /* Disable text selection for better touch experience */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Allow text selection for input fields */
+    input, textarea {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+    
+    /* Enhance touch feedback */
+    button, .liquid-button {
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+      touch-action: manipulation;
+    }
+  }
+
   /* Liquid glass animations */
   @keyframes liquidFlow {
     0%, 100% {
