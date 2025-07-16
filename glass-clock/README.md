@@ -129,111 +129,119 @@ Each theme includes:
 Target performance metrics:
 - **Lighthouse Score**: 90+ on all metrics
 - **First Load**: < 3 seconds on 3G
-- **Bundle Size**: < 1MB initial bundle
 - **Memory Usage**: < 50MB average
 
-## 🎵 Spotify Integration
+## 🎵 Spotify Integration Setup Guide
 
-### Setup Instructions
+### Quick Setup
 
-1. **Create Spotify App**
-   - Visit [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-   - Click "Create App" and choose "Web App"
-   - Fill in app details (name, description, etc.)
+#### 1. Create Spotify Application
+1. Visit [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+2. Log in with your Spotify account
+3. Click "Create App"
+4. Fill in the details:
+   - App Name: "Glass Clock" (or any name you prefer)
+   - App Description: "Music control for Glass Clock PWA"
+   - Website: Your website URL (or just use `http://localhost:3000` for development)
+   - Redirect URIs: 
+     - **Development**: `http://localhost:3000/callback`
+     - **Production**: `https://yourdomain.com/callback` (replace with your actual domain)
+   - Which API/SDKs are you planning to use?: Select "Web API"
+5. Agree to terms and create the app
 
-2. **Configure Redirect URIs**
-   Add these redirect URIs in your Spotify app settings:
-   - Development: `http://localhost:3000/callback`
-   - Production: `https://yourdomain.com/callback`
+#### 2. Get Your Client ID
+1. In your new Spotify app dashboard, find the "Client ID"
+2. Copy this value (it looks like: `7c8a8b1f4b5e4c3d2e1f0a9b8c7d6e5f`)
 
-3. **Set Environment Variable**
-   Create a `.env` file in the root directory:
-   ```env
-   REACT_APP_SPOTIFY_CLIENT_ID=your_client_id_here
-   ```
+#### 3. Configure Environment
+Create a `.env` file in the `glass-clock` directory with the content from `.env.example`:
 
-4. **Security Note**
-   - We use PKCE (Proof Key for Code Exchange) authentication flow
-   - No client secret needed (secure for client-side apps)
-   - All authentication happens in the browser
+```env
+REACT_APP_SPOTIFY_CLIENT_ID=your_actual_client_id_here
+```
 
-### Features
-- **Music Control** - Play, pause, skip tracks directly from the app
-- **Volume Control** - Adjust playback volume with a smooth slider
-- **Current Track Display** - See what's playing with album art and artist info
-- **Playlist Access** - Browse and play your Spotify playlists
-- **Device Management** - Control playback across your Spotify devices
-- **Visual Feedback** - Beautiful liquid glass design with audio visualizations
+Replace `your_actual_client_id_here` with the Client ID you copied from step 2.
 
-### Usage
-1. Click the 🎵 button in the controls or press `P`
-2. Click "Connect Spotify" to authenticate
-3. Grant necessary permissions for music control
-4. Enjoy seamless music integration with your relaxing clock!
+#### 4. Restart Development Server
+After adding the environment variable:
+```bash
+# Stop the current server (Ctrl+C)
+# Then restart:
+npm start
+```
+
+### Security Notes
+
+- **No Client Secret Required**: We use PKCE (Proof Key for Code Exchange) authentication
+- **Secure Authentication**: All authentication happens client-side with secure token exchange
+- **Limited Permissions**: Only requests necessary Spotify permissions for music control
+
+### Required Spotify Permissions
+
+The app requests these Spotify scopes:
+- `user-read-playback-state` - See what's currently playing
+- `user-modify-playback-state` - Control playback (play/pause/skip)
+- `user-read-currently-playing` - Get current track info
+- `playlist-read-private` - Access your playlists
+- `streaming` - Play music through Spotify Web SDK
+- `user-library-read` - Access your saved music
+
+### Troubleshooting
+
+#### Common Issues
+
+1. **"Invalid redirect URI" error**
+   - Make sure you added the exact redirect URI in your Spotify app settings
+   - For development: `http://localhost:3000/callback`
+   - Check for trailing slashes or typos
+
+2. **"Invalid client" error**
+   - Verify your Client ID is correct in the `.env` file
+   - Make sure there are no extra spaces or quotes
+
+3. **Environment variable not loaded**
+   - Restart the development server after adding the `.env` file
+   - Make sure the file is named exactly `.env` (not `.env.txt`)
+   - Check that the variable starts with `REACT_APP_`
+
+4. **No playback devices found**
+   - Open Spotify on another device (phone, desktop app, or web player)
+   - Make sure you have an active Spotify Premium subscription
+   - Try refreshing the Glass Clock page
+
+#### Testing the Integration
+
+1. Start the development server: `npm start`
+2. Navigate to `http://localhost:3000`
+3. Click the 🎵 button or press `P`
+4. Click "Connect Spotify"
+5. You'll be redirected to Spotify for authorization
+6. After authorizing, you'll return to Glass Clock with music controls
+
+### Production Deployment
+
+When deploying to production:
+
+1. Add your production domain's callback URL to your Spotify app
+2. Set the environment variable in your hosting platform
+3. Make sure the redirect URI matches exactly (including `https://`)
+
+Example for different platforms:
+- **Vercel**: Add environment variable in project settings
+- **Netlify**: Add in site settings under Environment variables
+- **GitHub Pages**: Use GitHub Secrets for environment variables
+
+### Support
+
+If you encounter issues:
+1. Check the browser console for error messages
+2. Verify all setup steps are completed correctly
+3. Make sure you have Spotify Premium (required for Web API control)
+4. Try the integration with different browsers
+
+Enjoy seamless music control with your Glass Clock! 🎵✨
 
 ## 🔧 Development
 
 ### Project Structure
 ```
-src/
-├── components/          # React components
-│   ├── Clock.tsx       # Main clock display
-│   ├── Controls.tsx    # Floating action buttons
-│   └── SettingsPanel.tsx # Settings configuration
-├── context/            # React context for state management
-│   └── AppContext.tsx  # Global app state
-├── themes/             # Theme definitions
-│   └── index.ts        # Theme configurations
-├── types/              # TypeScript type definitions
-│   └── index.ts        # App-wide types
-└── App.tsx             # Main app component
-```
-
-### Adding New Themes
-1. Add theme definition to `src/themes/index.ts`
-2. Include all required properties (background, textColor, accentColor, etc.)
-3. Theme will automatically appear in settings panel
-
-### State Management
-The app uses React Context with useReducer for state management:
-- **Theme switching**
-- **Clock settings**
-- **UI state (fullscreen, settings panel)**
-- **Persistent preferences** (localStorage)
-
-## 🔮 Future Enhancements
-
-### Phase 2 Features (Planned)
-- **Ambient Sounds** - Nature sounds, white noise, pink noise
-- **Pomodoro Timer** - 25-minute focus sessions
-- **Custom Timers** - User-defined countdown timers
-- **Meditation Timer** - Guided meditation sessions
-- **Breathing Guide** - Visual breathing exercises
-
-### Phase 3 Features (Planned)
-- **Weather Integration** - Current weather display
-- **Calendar Integration** - Upcoming events
-- **Multiple Clocks** - World clock functionality
-- **Social Features** - Share themes and presets
-
-## 📝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Inspired by minimalist clock designs and mindfulness practices
-- Built with modern web technologies and PWA best practices
-- Designed for accessibility and inclusive user experience
-
----
-
-**Enjoy your peaceful time with Glass Clock! 🕐✨**

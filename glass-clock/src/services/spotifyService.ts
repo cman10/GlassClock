@@ -81,7 +81,7 @@ class SpotifyService {
 
   constructor() {
     this.config = {
-      clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID || '3b43860b43c145678477079b6a42c6ce', // You'll need to set this
+      clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID || '',
       redirectUri: window.location.origin + '/callback',
       scopes: [
         'user-read-playback-state',
